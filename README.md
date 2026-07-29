@@ -85,11 +85,13 @@
   - I have also Included a `Docker Volume` setup task as well for `SonarQube`, where the Container Data will be persisted to avoid Data lost.
 ```bash
 # Volume inspection, confirm the docker volume exist
-docker volume inspect volume sonarqube-volume
+docker volume inspect sonarqube-volume
 
 # Create a new conainter, provide your container name and deploy in the `Jenkins-CI` server
 docker run -d --name PROVIDE_NAME_HERE -v sonarqube-volume:/opt/sonarqube/data -p 9000:9000 sonarqube:lts-community
 ```
+
+docker run -d --name sonarsonar -v sonarqube-volume:/opt/sonarqube/data -p 9000:9000 sonarqube:lts-community
 
 5) Slack 
     - Go to the bellow Workspace and create a Private Slack Channel and name it "yourfirstname-jenkins-cicd-pipeline-alerts"
@@ -136,7 +138,7 @@ aws --version
 docker ps | grep sonarqube:lts-community
 
 # Lastly confirm that the `sonarqube-volume docker volume` was created
-docker volume inspect volume sonarqube-volume
+docker volume inspect sonarqube-volume
 ```
 
 ### 5B) Deploy Your EKS Cluster Environment
@@ -395,7 +397,7 @@ terraform apply --auto-approve
             - Navigate to the `Jenkins Global Credential Dash`
             - Click on `Create Credentials`
             - Scope: Select `Global......`
-            - ID and Description: `OWASP-Zap-Credential`
+            - ID and Description: `
             - Username: `ubuntu`
             - Private key: Select
               - Key: Click on `Add`
