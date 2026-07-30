@@ -486,6 +486,9 @@ terraform apply --auto-approve
 - SSH Back into your `Jenkins-CI` instance
     - Run the Following Commands to Deploy the `EFK Stack including Prometheus and Grafana k8s manifest`
 ```bash
+# Refresh the kubeconfig
+aws eks update-kubeconfig --region us-east-2 --name EKS_Cluster
+
 # Get cluster nodes
 kubectl get nodes
 
@@ -496,7 +499,8 @@ kubectl get pods
 kubectl get all
 
 # Deploy EFK Stack and give it about 10 Minutes before deploying the Prom & Graf..
-cd ../efk-stack
+cd /home/ubuntu/realworld-microservice-project/efk-stack
+# cd ../efk-stack
 ls -al
 kubectl apply -f .
 
